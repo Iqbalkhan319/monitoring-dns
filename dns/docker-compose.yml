@@ -11,7 +11,7 @@ services:
       - ROOT_PASSWORD=secretpassword
     volumes: 
       - dns-data:/data
-      - /resolv/resolv.conf:/etc/resolv.conf
+     # - /resolv/resolv.conf:/etc/resolv.conf
     networks:
       - frontend-net
 networks:
