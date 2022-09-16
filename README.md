@@ -14,7 +14,11 @@ Step 3: Run Ready DNS
 Step 4 : Add A Record in the DNS Server. Please Run adddnsrecord.sh
 ./adddnsrecord.sh
 
-Step 5: Check DNS Funtionality
+Step 5: Run add-nameserver.sh script
+
+./add-nameserver.sh
+
+Step 6: Check DNS Funtionality
 
 #docker exec -it dns bash
 #cat /etc/resolv.conf
