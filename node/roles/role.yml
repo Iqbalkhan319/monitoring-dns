@@ -1,0 +1,2 @@
+- name: node-exporter
+  src: geerlingguy.node_exporter
