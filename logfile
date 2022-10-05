@@ -1,0 +1,496 @@
+Using memory mapped file for IPC
+
+TPT_INFRA: TPT04101: Warning: Teradata PT cannot connect to Unity EcoSystem Manager.
+             The job will continue without event messages being sent to Unity EcoSystem Manager. 
+TPT_INFRA: TPT04197: Warning: OMD API failed to initialize
+Teradata Parallel Transporter PlanExecutor Version 16.20.00.05
+
+Total Available Memory: 6295392
+DSMemoryPercentage:     70
+Using Message Size:     1048576
+
+Teradata Parallel Transporter Executor Version 16.20.00.05
+Teradata Parallel Transporter Executor Version 16.20.00.05
+Teradata Parallel Transporter Coordinator Version 16.20.00.05
+Teradata Parallel Transporter Load Operator Version 16.20.00.05
+PRES_STATEMENT_CALC_FINAL_0_load: private log not specified
+Teradata Parallel Transporter Export Operator Version 16.20.00.05
+PRES_STATEMENT_CALC_FINAL_0_export: private log not specified
+ 
+     ===================================================================
+     =                                                                 =
+     =              TERADATA PARALLEL TRANSPORTER 64-BIT               =
+     =                                                                 =
+     =              LOAD OPERATOR     VERSION 16.20.00.05              =
+     =                                                                 =
+     =          OPERATOR SUPPORT LIBRARY VERSION 16.20.00.05           =
+     =                                                                 =
+     =           COPYRIGHT 2001-2018, TERADATA CORPORATION.            =
+     =                      ALL RIGHTS RESERVED.                       =
+     =                                                                 =
+     =                       Process I.D.: 27730                       =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Processing starting at: Sat Oct  1 16:36:47 2022
+ 
+     ===================================================================
+     =                                                                 =
+     =                      Module Identification                      =
+     =                                                                 =
+     ===================================================================
+
+     64-bit Load Operator for Linux release 3.10.0-957.5.1.el7.x86_64 on bi-etl-prod-03
+     LoadMain   : 16.20.00.03
+     LoadCLI    : 16.20.00.05
+     LoadUtil   : 14.10.00.01
+     PcomCLI    : 16.20.00.13
+     PcomMBCS   : 14.10.00.02
+     PcomMsgs   : 16.00.00.04
+     PcomNtfy   : 15.10.00.01
+     PcomPx     : 16.20.00.05
+ 
+     PcomUtil   : 16.20.00.06
+     ===================================================================
+     =                                                                 =
+     =              TERADATA PARALLEL TRANSPORTER 64-BIT               =
+     =                                                                 =
+     =             EXPORT OPERATOR     VERSION 16.20.00.05             =
+     =                                                                 =
+     =          OPERATOR SUPPORT LIBRARY VERSION 16.20.00.05           =
+     =                                                                 =
+     =           COPYRIGHT 2001-2018, TERADATA CORPORATION.            =
+     =                      ALL RIGHTS RESERVED.                       =
+     =                                                                 =
+     =                       Process I.D.: 27732                       =
+     =                                                                 =
+     ===================================================================
+
+     PXICU      : 16.20.00.05
+**** 16:36:47 Processing starting at: Sat Oct  1 16:36:47 2022
+ 
+     ===================================================================
+     =                                                                 =
+     =                      Module Identification                      =
+     =                                                                 =
+     ===================================================================
+
+     TDICU      : 16.20.00.02
+     64-bit Export Operator for Linux release 3.10.0-957.5.1.el7.x86_64 on bi-etl-prod-03
+     USelDir    : 16.20.00.02
+     ExportMain : 16.20.00.01
+     ExportCLI  : 16.10.00.01
+     ExportUtil : 14.10.00.01
+     PcomCLI    : 16.20.00.13
+     PcomMBCS   : 14.10.00.02
+     PcomMsgs   : 16.00.00.04
+     PcomNtfy   : 15.10.00.01
+     PcomPx     : 16.20.00.05
+     PcomUtil   : 16.20.00.06
+     PXICU      : 16.20.00.05
+     TDICU      : 16.20.00.02
+     USelDir    : 16.20.00.02
+     CLIv2      : 16.20.00.09   
+ 
+     ===================================================================
+     =                                                                 =
+     =                      Attribute Definitions                      =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Options in effect for this job:
+              OperatorType:                Consumer
+              Instances:                   1
+              Character set:               Not specified; will use default
+              Checkpoint:                  No checkpoint in effect
+              Notify:                      Not enabled
+              Unicode Pass Through:        Not enabled
+              Buffer size:                 Maximum allowable
+              Error limit:                 1 rejected record(s)
+              Tenacity:                    4 hour limit to successfully connect
+              Sleep:                       6 minute(s) between connect retries
+              Pause Acq:                   Not in effect
+ 
+     ===================================================================
+     =                                                                 =
+     =                     Column/Field Definition                     =
+     =                                                                 =
+     ===================================================================
+
+     Column Name                    Offset  Length Type      
+     ============================== ======= ====== ========================
+     RoyaltyJobID                         0      4 INTEGER
+     EntityID                             4      4 INTEGER
+     StatementID                          8      4 INTEGER
+     BucketID                            12      4 INTEGER
+     YearMonth                           16     64 VARCHAR
+     CalcTypeID                          82      4 INTEGER
+     WinningCalcFlg                      86      1 BYTEINT
+     LocalPaymentAmt                     87      8 DECIMAL(18,8)
+     LocalPaymentAmtCurrencyID           95      4 INTEGER
+     PaymentAmt                          99      8 DECIMAL(18,8)
+     PaymentAmtCurrencyID               107      4 INTEGER
+     AccountingMonth                    111     64 VARCHAR
+     PrevRoyaltyJobID                   177      4 INTEGER
+     PrevPaymentAmt                     181      8 DECIMAL(15,8)
+     BreakageFeeLocalAmt                189      8 DECIMAL(18,4)
+     LocPaymentDeductionAmt             197      8 FLOAT
+     CountryID                          205      4 INTEGER
+     ============================== ======= ====== ========================
+     INDICATOR BYTES NEEDED: 3
+     EXPECTED RECORD LENGTH: 212
+ 
+     ===================================================================
+     =                                                                 =
+     =                   Control Session Connection                    =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_load: connecting sessions
+**** 16:36:47 Connecting to RDBMS:    '141.206.4.13'
+**** 16:36:47 Connecting with UserId: 'sysdba'
+     CLIv2      : 16.20.00.09   
+ 
+     ===================================================================
+     =                                                                 =
+     =                      Attribute Definitions                      =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Options in effect for this job:
+              OperatorType:                Producer
+              Instances:                   1
+              Character set:               Not specified; will use default
+              Checkpoint:                  No checkpoint in effect
+              Notify:                      Not enabled
+              Unicode Pass Through:        Not enabled
+              Tenacity:                    1 hour limit to successfully connect
+              Sleep:                       1 minute(s) between connect retries
+              Date format:                 INTEGERDATE
+              Blocksize:                   64260 bytes
+              OutLimit:                    No limit in effect
+              Discard large row:           Not enabled
+              SpoolMode:                   Spool
+ 
+     ===================================================================
+     =                                                                 =
+     =                     Column/Field Definition                     =
+     =                                                                 =
+     ===================================================================
+
+     Column Name                    Offset  Length Type      
+     ============================== ======= ====== ========================
+     RoyaltyJobID                         0      4 INTEGER
+     EntityID                             4      4 INTEGER
+     StatementID                          8      4 INTEGER
+     BucketID                            12      4 INTEGER
+     YearMonth                           16     64 VARCHAR
+     CalcTypeID                          82      4 INTEGER
+     WinningCalcFlg                      86      1 BYTEINT
+     LocalPaymentAmt                     87      8 DECIMAL(18,8)
+     LocalPaymentAmtCurrencyID           95      4 INTEGER
+     PaymentAmt                          99      8 DECIMAL(18,8)
+     PaymentAmtCurrencyID               107      4 INTEGER
+     AccountingMonth                    111     64 VARCHAR
+     PrevRoyaltyJobID                   177      4 INTEGER
+     PrevPaymentAmt                     181      8 DECIMAL(15,8)
+     BreakageFeeLocalAmt                189      8 DECIMAL(18,4)
+     LocPaymentDeductionAmt             197      8 FLOAT
+     CountryID                          205      4 INTEGER
+     ============================== ======= ====== ========================
+     INDICATOR BYTES NEEDED: 3
+     EXPECTED RECORD LENGTH: 212
+ 
+     ===================================================================
+     =                                                                 =
+     =                   Control Session Connection                    =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_export: connecting sessions
+**** 16:36:47 Connecting to RDBMS:    '10.150.12.131'
+**** 16:36:47 Connecting with UserId: 'sysdba'
+ 
+**** 16:36:47 Number of Query Band data bytes sent to the RDBMS: 119
+ 
+**** 16:36:47 Number of Query Band data bytes sent to the RDBMS: 118
+ 
+     ===================================================================
+     =                                                                 =
+     =                  Teradata Database Information                  =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Teradata Database Version:       '17.20.03.01'
+**** 16:36:47 Teradata Database Release:       '17.20.03.01'
+**** 16:36:47 Session character set:           'ASCII'
+**** 16:36:47 Total AMPs available:            336
+**** 16:36:47 Data Encryption:                 supported
+**** 16:36:47 Unicode Pass Through:            supported
+**** 16:36:47 Maximum request size supported:  1048500 bytes
+**** 16:36:47 Maximum row size supported:      1000000 bytes
+**** 16:36:47 Maximum message size supported:  7340032 bytes
+**** 16:36:47 Enhanced Statement Status Level: 1
+ 
+     ===================================================================
+     =                                                                 =
+     =                  Teradata Database Information                  =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Teradata Database Version:       '16.20.32.23'
+**** 16:36:47 Teradata Database Release:       '16.20.32.23'
+**** 16:36:47 Session character set:           'ASCII'
+**** 16:36:47 Total AMPs available:            480
+**** 16:36:47 Data Encryption:                 supported
+**** 16:36:47 NoSpool mode:                   not supported by RDBMS
+**** 16:36:47 Unicode Pass Through:            supported
+**** 16:36:47 Maximum request size supported:  1048500 bytes
+**** 16:36:47 Maximum row size supported:      1000000 bytes
+**** 16:36:47 Maximum message size supported:  7340032 bytes
+**** 16:36:47 Enhanced Statement Status Level: 1
+**** 16:36:47 Blocksize for this job:          64260 bytes
+ 
+     ===================================================================
+     =                                                                 =
+     =                   Special Session Connection                    =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:47 Restart log table 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_LOG' has been created
+ 
+     ===================================================================
+     =                                                                 =
+     =                   Special Session Connection                    =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:49 Number of sessions adjusted due to TASM:      36
+ 
+              Instance Assigned Connected Result                
+              ======== ======== ========= ======================
+                  1        36       36    Successful
+              ======== ======== ========= ======================
+                Total      36       36    Successful
+ 
+     ===================================================================
+     =                                                                 =
+     =                 Target/Error Table Information                  =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_load: preparing target table
+**** 16:36:49 This job will use the following tables:
+ 
+              Target Table:  'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0'
+              Error Table 1: 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_ET'
+              Error Table 2: 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_UV'
+ 
+     ===================================================================
+     =                                                                 =
+     =                        Acquisition Phase                        =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_load: entering Acquisition Phase
+**** 16:36:49 DML statement for DML Group: 1
+ 
+             INSERT INTO CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0     (   RoyaltyJobID,EntityID,StatementID,BucketID,YearMonth,CalcTypeID,WinningCalcFlg,LocalPaymentAmt,LocalPaymentAmtCurrencyID,PaymentAmt,PaymentAmtCurrencyID,AccountingMonth,PrevRoyaltyJobID,PrevPaymentAmt,BreakageFeeLocalAmt,LocPaymentDeductionAmt,CountryID     )     VALUES     (   :RoyaltyJobID,:EntityID,:StatementID,:BucketID,:YearMonth,:CalcTypeID,:WinningCalcFlg,:LocalPaymentAmt,:LocalPaymentAmtCurrencyID,:PaymentAmt,:PaymentAmtCurrencyID,:AccountingMonth,:PrevRoyaltyJobID,:PrevPaymentAmt,:BreakageFeeLocalAmt,:LocPaymentDeductionAmt,:CountryID     );      
+ 
+**** 16:36:49 Number of records per buffer for this job: 4945
+**** 16:36:56 Number of sessions adjusted due to TASM:      96
+ 
+              Instance Assigned Connected Result                
+              ======== ======== ========= ======================
+                  1        96       96    Successful
+              ======== ======== ========= ======================
+                Total      96       96    Successful
+PRES_STATEMENT_CALC_FINAL_0_export supports the max row size 1024KB.
+PRES_STATEMENT_CALC_FINAL_0_load supports the max row size 1024KB.
+Job step 'STEP_01' uses the max row size 1024KB.
+Job is running in Buffer Mode
+Task(SELECT_2[0001]): checkpoint completed, status = Success
+Task(APPLY_1[0001]): checkpoint completed, status = Success
+ 
+     ===================================================================
+     =                                                                 =
+     =                         Select Request                          =
+     =                                                                 =
+     ===================================================================
+
+**** 16:36:57 This job is submitting the following request:
+ 
+     LOCKING TABLE ROYALTY_DM.PRES_STATEMENT_CALC_FINAL FOR ACCESS select * from ROYALTY_DM.PRES_STATEMENT_CALC_FINAL 
+ 
+PRES_STATEMENT_CALC_FINAL_0_export: sending SELECT request
+**** 16:36:58 This job will run in the Spool Export mode.
+**** 16:36:58 Select execution completed. 1595 data blocks generated.
+Data Block size: 1048424  Buffers/Block: 1  Data Buffer size: 1048416
+**** 16:36:58 Starting to send data to the RDBMS
+ 
+     ===================================================================
+     =                                                                 =
+     =                        End Export Phase                         =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_export: entering End Export Phase
+**** 16:37:09 END EXPORT SUBMITTED
+**** 16:37:09 END EXPORT COMPLETED
+ 
+     Total Records Exported From RDBMS    =  870883
+PRES_STATEMENT_CALC_FINAL_0_export: Total Rows Exported:  870883
+        Records exported by instance 1    =  870883
+ 
+     Total Bytes Exported From RDBMS      =  79971045
+ 
+     Total Records Discarded              =  0
+PRES_STATEMENT_CALC_FINAL_0_export: Total Rows Discarded: 0
+        Records discarded by instance 1   =  0
+ 
+**** 16:37:09 Export Phase statistics:
+              Elapsed time: 00:00:11 (hh:mm:ss)
+              CPU time:     0.295112 Second(s)
+              MB/sec:       6.933
+              MB/cpusec:    258.432
+TASK(SELECT_2[0001]) sends internal checkpoint request
+Task(SELECT_2[0001]) ready to checkpoint after PXTB_AcceptRow
+
+Task(SELECT_2[0001]): checkpoint completed, status = Success
+Task(APPLY_1[0001]) gets checkpoint marker.
+
+Task(APPLY_1[0001]) ready to checkpoint.
+**** 16:37:10 Checkpoint complete. Rows sent: 870883
+Task(APPLY_1[0001]): checkpoint completed, status = Success
+Task(SELECT_2[0001]) ready to take EOD checkpoint, status = Success
+Task(APPLY_1[0001]) gets EndOfData marker.
+
+Task(APPLY_1[0001]) ready to take EOD checkpoint, status = End Of Data
+
+Task(SELECT_2[0001]): checkpoint completed, status = Success
+Task(APPLY_1[0001]): checkpoint completed, status = Success
+TASK(SELECT_2[0001]) completes EOD checkpoint, status = Success
+**** 16:37:12 Finished sending rows to the RDBMS
+**** 16:37:12 Number of bytes sent to the RDBMS for this job: 86938763
+ 
+                        Instance    Rows Sent   
+                        ========  ======================= 
+                            1                    870883
+                        ========  ======================= 
+                          Total                  870883
+ 
+**** 16:37:12 Acquisition Phase statistics:
+              Elapsed time: 00:00:14 (hh:mm:ss)
+              CPU time:     0.075496 Second(s)
+              MB/sec:       5.922
+              MB/cpusec:    1098.221
+ 
+     ===================================================================
+     =                                                                 =
+     =                        Application Phase                        =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_load: entering Application Phase
+**** 16:37:12 Application Phase Begin
+ 
+              Statistics for Target Table: 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0'
+              Total Rows Sent To RDBMS:      870883
+              Total Rows Applied:            870883
+PRES_STATEMENT_CALC_FINAL_0_load: Statistics for Target Table:  'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0'
+PRES_STATEMENT_CALC_FINAL_0_load: Total Rows Sent To RDBMS:      870883
+PRES_STATEMENT_CALC_FINAL_0_load: Total Rows Applied:            870883
+ 
+**** 16:37:12 Application Phase End
+ 
+**** 16:37:12 Application Phase statistics:
+              Elapsed time: 00:00:00 (hh:mm:ss)
+ 
+     ===================================================================
+     =                                                                 =
+     =                   Load Operator Task Cleanup                    =
+     =                                                                 =
+     ===================================================================
+
+     Target Table 1: 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0'
+           Number of rows  Error Table Name
+     ====================  =========================================
+                        0  'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_ET'
+                        0  'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_UV'
+ 
+PRES_STATEMENT_CALC_FINAL_0_load: Total Rows in Error Table 1:   0
+PRES_STATEMENT_CALC_FINAL_0_load: Total Rows in Error Table 2:   0
+PRES_STATEMENT_CALC_FINAL_0_load: Total Duplicate Rows:          0
+**** 16:37:13 Total Duplicate Rows: 0
+ 
+**** 16:37:13 Restart log table 'CERULIUM_STAGE.PRES_STATEMENT_CALC_FINAL_0_LOG' has been dropped
+TASK(APPLY_1[0001]) completes EOD checkpoint, status = Success
+TPT_INFRA: TPT02255: Message Buffers Sent/Received = 109, Total Rows Received = 0, Total Rows Sent = 0
+TPT_INFRA: TPT02255: Message Buffers Sent/Received = 109, Total Rows Received = 0, Total Rows Sent = 0
+ 
+     ===================================================================
+     =                                                                 =
+     =                        Logoff/Disconnect                        =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_load: disconnecting sessions
+**** 16:37:13 Logging off all sessions
+ 
+     ===================================================================
+     =                                                                 =
+     =                        Logoff/Disconnect                        =
+     =                                                                 =
+     ===================================================================
+
+PRES_STATEMENT_CALC_FINAL_0_export: disconnecting sessions
+**** 16:37:13 Logging off all sessions
+PRES_STATEMENT_CALC_FINAL_0_load: Performance metrics:
+PRES_STATEMENT_CALC_FINAL_0_load:     MB/sec in Acquisition phase: 5.922
+PRES_STATEMENT_CALC_FINAL_0_load:     Elapsed time from start to Acquisition phase:   11 second(s)
+PRES_STATEMENT_CALC_FINAL_0_load:     Elapsed time in Acquisition phase:   14 second(s)
+PRES_STATEMENT_CALC_FINAL_0_load:     Elapsed time in Application phase: < 1 second
+PRES_STATEMENT_CALC_FINAL_0_load:     Elapsed time from Application phase to end:   2 second(s)
+ 
+              Instance      Cpu Time     
+              ========  ================ 
+                   1        0.34 Seconds
+ 
+**** 16:37:14 Total processor time used = '0.337836 Second(s)'
+     .        Start : Sat Oct  1 16:36:47 2022
+     .        End   : Sat Oct  1 16:37:14 2022
+     .        Highest return code encountered = '0'.
+PRES_STATEMENT_CALC_FINAL_0_load: Total processor time used = '0.337836 Second(s)'
+PRES_STATEMENT_CALC_FINAL_0_load: Start : Sat Oct  1 16:36:47 2022
+PRES_STATEMENT_CALC_FINAL_0_load: End   : Sat Oct  1 16:37:14 2022
+**** 16:37:14 This job terminated
+PRES_STATEMENT_CALC_FINAL_0_export: Performance metrics:
+PRES_STATEMENT_CALC_FINAL_0_export:     MB/sec in Export phase: 6.933
+Job step STEP_01 completed successfully
+PRES_STATEMENT_CALC_FINAL_0_export:     Elapsed time from start to Select phase:   10 second(s)
+Job rueben.parisapogu completed successfully
+PRES_STATEMENT_CALC_FINAL_0_export:     Elapsed time in Select phase:   1 second(s)
+PRES_STATEMENT_CALC_FINAL_0_export:     Elapsed time in Export phase:   11 second(s)
+PRES_STATEMENT_CALC_FINAL_0_export:     Elapsed time from Export phase to end:   7 second(s)
+Job start: Sat Oct  1 16:36:46 2022
+ 
+Job end:   Sat Oct  1 16:37:16 2022
+              Instance      Cpu Time     
+              ========  ================ 
+                   1        0.93 Seconds
+ 
+**** 16:37:16 Total processor time used = '0.931539 Second(s)'
+     .        Start : Sat Oct  1 16:36:47 2022
+     .        End   : Sat Oct  1 16:37:16 2022
+     .        Highest return code encountered = '0'.
+PRES_STATEMENT_CALC_FINAL_0_export: Total processor time used = '0.931539 Second(s)'
+Total available memory:        6295392
+Largest allocable area:        6295392
+Memory use high water mark:    3156168
+Free map size:                 1024
+Free map use high water mark:          15
+Free list use high water mark: 0
+
+PRES_STATEMENT_CALC_FINAL_0_export: Start : Sat Oct  1 16:36:47 2022
+PRES_STATEMENT_CALC_FINAL_0_export: End   : Sat Oct  1 16:37:16 2022
+**** 16:37:16 This job terminated
