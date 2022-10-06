@@ -1,0 +1,178 @@
+#!/bin/bash
+#
+#set -x
+Date=`date +%Y-%b-%d"-""%T"`
+LOG=/data/logs/
+
+if [ $# -ne 7 ]; then
+	echo "You passed invalid parameters"
+	echo "parser-script  <SUBJECT_AREA> <TGT_DB> <TGT_TABLE> <LD_FILENAME> <TPTLOGFILE> <FILE_MIN_TS> <FILE_MAX_TS>"
+	exit 1
+fi
+
+
+wSUBJECT_AREA=$1 ; export wSUBJECT_AREA 
+wTGT_DB=$2; export wTGT_DB
+wTGT_TBL_NM=$3; export wTGT_TBL_NM
+wLD_FILE_NAME=$4; export wLD_FILE_NAME
+#TPTLOGFILE="/data/logs/CERULIUM_STAGE-PRES_STATEMENT_CALC_FINAL_0-detailed.log" 
+#TPTLOGFILE="$5/CERULIUM_STAGE-PRES_STATEMENT_CALC_FINAL_0-detailed.log" 
+TPTLOGFILE=$5; export TPTLOGFILE
+#echo $TPTLOGFILE
+FILE_MIN_TS=$6;export FILE_MIN_TS
+FILE_MAX_TS=$7; export FILE_MAX_TS
+wRTN_CD=0; export wRTN_CD
+##
+convert_date() {
+  typeset -l date=$1
+  typeset IFS="-"
+  set -- $date  # now $1 is the day, $2 is the lower-case month, $3 is the year
+#
+  typeset months
+ # set -A months "" jan feb mar apr may jun jul aug sep oct nov dec
+  months=(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+  typeset -i m=1
+#
+  while [[ $m -le 12 ]]; do 
+    if [[ "$2" = "${months[$m]}" ]]; then 
+      break
+    else
+      m=$(( m+1 ))
+    fi
+  done
+#
+#  # assume this century
+  printf "%04d-%02d-%02d\n" "$3" $m "$1" 
+}
+##
+
+#-------------------------------Get Run SEQ ----------------------
+#wRUN_SEQ=1; export wRUN_SEQ
+
+
+#echo "step1"
+
+#-----------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------
+sRTN_STAT_CD='Highest return code encountered';export sRTN_STAT_CD
+sSTART_DT_TS='Job start:'; export sSTART_DT_TS
+sEND_DT_TS='Job end:'; export sEND_DT_TS
+sTOT_REC_READ='Total Rows Sent To RDBMS:'; export sTOT_REC_READ
+sTOT_REC_REJ='Total Rows Discarded:'; export sTOT_REC_REJ
+sTOT_REC_INS='Total Rows Applied:'; export sTOT_REC_INS
+sTOT_REC_UPD='Total Rows Updated:'; export sTOT_REC_UPD
+sTOT_REC_DEL='Total Rows Deleted:'; export sTOT_REC_DEL
+sTOT_REC_UV='Total Rows in Error Table 2:'; export sTOT_REC_UV
+sTOT_REC_ET='Total Rows in Error Table 1:'; export sTOT_REC_ET
+sTOT_REC_DUP='Total Duplicate Rows:'; export sTOT_REC_DUP
+#
+#echo "step2: cat /data/logs/${TPTLOGFILE}"
+#wRTN_STAT_CD=`cat /data/logs/${TPTLOGFILE} 2>/dev/null | grep -i "${sRTN_STAT_CD}" | tail | awk -F' ' '{ print $7 }' | awk -F'[. ]' '{ print $1 }' | awk -F' ' '{ print $1 }'`; export wRTN_STAT_CD
+wRTN_STAT_CD=`cat ${TPTLOGFILE} | grep -i "${sRTN_STAT_CD}" | tail -1 | awk -F' ' '{ print $7 }' |  awk -F'[. ]' '{ print $1 }'`; export wRTN_STAT_CD
+
+#
+wSTART_DT_DT=`cat ${TPTLOGFILE} | grep -i "${sSTART_DT_TS}" |  awk -F' ' '{ print $5 "-" $4 "-" $7 }'`; export wSTART_DT_DT
+wSTART_DT_TM=`cat ${TPTLOGFILE} | grep -i "${sSTART_DT_TS}" |  awk -F' ' '{ print $6 }'`; export wSTART_DT_TM
+#echo "wSTART_DT_DT= ${wSTART_DT_DT}"
+#
+wSTART_DT_DTn=`convert_date "${wSTART_DT_DT}"` 
+export wSTART_DT_TS=`echo "${wSTART_DT_DTn} ${wSTART_DT_TM}"`
+#
+wEND_DT_DT=`cat ${TPTLOGFILE} | grep -i "${sEND_DT_TS}" |  awk -F' ' '{ print $5 "-" $4 "-" $7 }'`; export wEND_DT_DT
+wEND_DT_TM=`cat ${TPTLOGFILE} | grep -i "${sEND_DT_TS}" |  awk -F' ' '{ print $6 }'`; export wEND_DT_TM
+#echo "wEND_DT_DT= ${wEND_DT_DT}"
+#
+wEND_DT_DTn=`convert_date "${wEND_DT_DT}"` 
+export wEND_DT_TS=`echo "${wEND_DT_DTn} ${wEND_DT_TM}"`
+#
+wTOT_REC_READ=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_READ}" | sed -n '/^[[:alnum:]]/p' | awk -F' ' '{ print $7 }' `; export wTOT_REC_READ
+wTOT_REC_REJ=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_REJ}" |  awk -F' ' '{ print $6 }'`; export wTOT_REC_REJ
+wTOT_REC_INS=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_INS}" |  awk -F' ' '{ print $6 }'`; export wTOT_REC_INS
+wTOT_REC_UPD=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_UPD}" |  awk -F' ' '{ print $6 }'`; export wTOT_REC_UPD
+wTOT_REC_DEL=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_DEL}" |  awk -F' ' '{ print $6 }'`; export wTOT_REC_DEL
+wTOT_REC_UV=`cat ${TPTLOGFILE}  | grep -i "${sTOT_REC_UV}" |  awk -F' ' '{ print $8 }'`; export wTOT_REC_UV
+wTOT_REC_ET=`cat ${TPTLOGFILE}  | grep -i "${sTOT_REC_ET}" |  awk -F' ' '{ print $8 }'`; export wTOT_REC_ET
+wTOT_REC_DUP=`cat ${TPTLOGFILE} | grep -i "${sTOT_REC_DUP}" | sed -n '/^[[:alnum:]]/p' |  awk -F' ' '{ print $5 }'`; export wTOT_REC_DUP
+#
+echo $wRTN_STAT_CD
+echo $wSTART_DT_DT
+echo $wSTART_DT_TM
+echo $wSTART_DT_TS
+echo $wEND_DT_DT
+echo $wEND_DT_TM
+echo $wEND_DT_TS
+echo $wTOT_REC_READ
+echo $wTOT_REC_REJ
+echo $wTOT_REC_INS
+echo $wTOT_REC_UPD
+echo $wTOT_REC_DEL
+echo $wTOT_REC_UV
+echo $wTOT_REC_ET
+echo $wTOT_REC_DUP
+
+#bteq << EOF
+#.logon 10.1.14.189/dbc,dbc
+#.set maxerror 1
+#.SET WIDTH 300
+#
+#DATABASE  TRACKINGDB;
+#
+#INSERT INTO TRACKINGDB.LD_TBL_RUN_STATS
+#(
+#       SUBJECT_AREA 
+#      ,TGT_DB
+#      ,TGT_TBL_NM
+#      ,LD_FILE_NAME
+#      ,RUN_SEQ
+#      ,RTN_CD
+#      ,RTN_STAT_CD
+#      ,START_DT_TS
+#      ,END_DT_TS
+#      ,TOT_REC_READ 
+#      ,TOT_REC_REJ
+#      ,TOT_REC_INS
+#      ,TOT_REC_UPD
+#      ,TOT_REC_DEL
+#      ,TOT_REC_UV
+#      ,TOT_REC_ET
+#      ,TOT_REC_DUP
+#      ,FILE_MIN_DT_TS
+#      ,FILE_MAX_DT_TS
+#      ,CRT_DT_TS
+#      ,LAST_UPD_DT_TS
+#      ,USER_ID
+#)
+#VALUES
+#(
+#       '${wSUBJECT_AREA}' 
+#      ,'${wTGT_DB}'
+#      ,'${wTGT_TBL_NM}'u#      ,'${wLD_FILE_NAME}'
+#      ,'${wLD_FILE_NAME}'
+#      ,${wRUN_SEQ}
+#      ,0
+#      ,${wRTN_STAT_CD}
+#      ,'${wSTART_DT_TS}'
+#      ,'${wEND_DT_TS}'
+#      ,${wTOT_REC_READ} 
+#      ,${wTOT_REC_REJ}
+#      ,${wTOT_REC_INS}
+#      ,${wTOT_REC_UPD}
+#      ,${wTOT_REC_DEL}
+#      ,${wTOT_REC_UV}
+#      ,${wTOT_REC_ET}
+#      ,${wTOT_REC_DUP}
+#      ,${FILE_MIN_TS}
+#      ,${FILE_MAX_TS}
+#      ,CURRENT_TIMESTAMP(0)
+#      ,CURRENT_TIMESTAMP(0)
+#      ,'${wUSER_ID}'
+#);	  
+#
+#.QUIT
+#EOF
+	  
+#exit
+
