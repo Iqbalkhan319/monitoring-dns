@@ -32,18 +32,18 @@ VALUES
       ,1
       ,0
       ,'0'
-      ,to_timestamp('2022-10-01 16:36:46','YYYY-MM-DD HH24:MI:SS')
-      ,to_timestamp('2022-10-01 16:37:16','YYYY-MM-DD HH24:MI:SS')
+      ,cast('2022-10-01 16:36:46' as timestamp)
+      ,cast('2022-10-01 16:37:16' as timestamp)
       ,870883
       ,0
       ,870883
-      ,null
-      ,null
       ,0
       ,0
       ,0
-      ,to_timestamp('1999-01-01','YYYY-MM-DD HH24:MI:SS')
-      ,to_timestamp('2000-01-01','YYYY-MM-DD HH24:MI:SS')
+      ,0
+      ,0
+      ,cast('1999-01-01' as timestamp)
+      ,cast('2000-01-01' as timestamp)
       ,CURRENT_TIMESTAMP(0)
       ,CURRENT_TIMESTAMP(0)
       ,'sysdba'
