@@ -19,6 +19,7 @@ INSERT INTO TRACKINGDB.LD_TBL_RUN_STATS
       ,TOT_REC_DUP
       ,FILE_MIN_DT_TS
       ,FILE_MAX_DT_TS
+	  ,FILE_DISTINCT_COUNT
       ,CRT_DT_TS
       ,LAST_UPD_DT_TS
       ,USER_ID
@@ -30,7 +31,7 @@ VALUES
       ,'PRES_STATEMENT_CALC_FINAL_0'
       ,'xyz.dat'
       ,1
-      ,0
+      ,'0'
       ,'0'
       ,cast('2022-10-01 16:36:46' as timestamp)
       ,cast('2022-10-01 16:37:16' as timestamp)
@@ -44,6 +45,7 @@ VALUES
       ,0
       ,cast('1999-01-01' as timestamp)
       ,cast('2000-01-01' as timestamp)
+	  ,0
       ,CURRENT_TIMESTAMP(0)
       ,CURRENT_TIMESTAMP(0)
       ,'sysdba'
