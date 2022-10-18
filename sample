@@ -1,0 +1,52 @@
+INSERT INTO TRACKINGDB.LD_TBL_RUN_STATS
+(
+       SUBJECT_AREA
+      ,TGT_DB
+      ,TGT_TBL_NM
+      ,LD_FILE_NAME
+      ,RUN_SEQ
+      ,RTN_CD
+      ,RTN_STAT_CD
+      ,START_DT_TS
+      ,END_DT_TS
+      ,TOT_REC_READ
+      ,TOT_REC_REJ
+      ,TOT_REC_INS
+      ,TOT_REC_UPD
+      ,TOT_REC_DEL
+      ,TOT_REC_UV
+      ,TOT_REC_ET
+      ,TOT_REC_DUP
+      ,FILE_MIN_DT_TS
+      ,FILE_MAX_DT_TS
+	  ,FILE_DISTINCT_COUNT
+      ,CRT_DT_TS
+      ,LAST_UPD_DT_TS
+      ,USER_ID
+)
+VALUES
+(
+       'dbimport'
+      ,'CERULIUM_STAGE'
+      ,'PRES_STATEMENT_CALC_FINAL_0'
+      ,'xyz.dat'
+      ,1
+      ,'0'
+      ,'0'
+      ,'2022-10-01 16:36:46'
+      ,'2022-10-01 16:37:16'
+      ,870883
+      ,0
+      ,870883
+      ,0
+      ,0
+      ,0
+      ,0
+      ,0
+      ,'1999-01-01 00:00:00'
+      ,'2000-01-01 00:00:00'
+	  ,0
+      ,current_timestamp(0)
+      ,current_timestamp(0)
+      ,'sysdba'
+);
