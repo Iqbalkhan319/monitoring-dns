@@ -1,0 +1,15 @@
+#!/bin/bash
+filepath=/root/filestatus/loading
+age1=60
+if [ -f "$filepath" ];
+        then
+                age="$(($(date +%M) - $(date -r "$filepath" +%M)))"
+                if [ $age -gt $age1 ];
+                        then
+                                echo "File created more then $age1 minutes ago"
+                        else
+                                echo "File create time $age"
+                fi
+        else
+                echo "File Doesn't exists"
+fi
