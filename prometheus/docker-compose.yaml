@@ -32,6 +32,24 @@ services:
     container_name: redis
     ports:
     - 6379:6379
+    volumes:
+    - /home/mxsysadmin/dockerStorage/redis:/data
+    networks:
+      - frontend-net
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redis-insight-server
+    restart: always
+    ports:
+    - 8001:8001
+    #previleged: true
+    depends_on:
+    - redis
+    #environment:
+    #- REDIS_HOST=redis
+    #- REDIS_PORT= 6379
+    volumes:
+    - /home/mxsysadmin/dockerStorage/redis-insight:/db
     networks:
       - frontend-net
   grafana:
@@ -43,6 +61,29 @@ services:
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - grafana-data:/var/lib/grafana
+    networks:
+      - frontend-net
+  backend:
+    container_name: mysqldb
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Time@12345
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - /home/mxsysadmin/dockerStorage/mysql:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - frontend-net
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    ports:
+      - 3001:80
+    environment:
+      PMA_HOST: backend
+    restart: unless-stopped
     networks:
       - frontend-net
 volumes:
